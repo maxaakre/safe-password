@@ -17,8 +17,8 @@
         <input type="password" v-model="credentials.password" />
       </div>
       <div class="box">
-        <label for="repeatpassword"> Repeat password</label>
-        <input type="repeatpassword" v-model="credentials.repeatPassword" />
+        <label for="password"> Repeat password</label>
+        <input type="password" v-model="credentials.repeatPassword" />
       </div>
 
       <a href="#" @click="register" class="btn"> Sign me up! </a>
@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       message: "Register",
-      logedIn: "You are registerd go to login",
+      loggedIn: "You are registerd go to login",
       credentials: {
         email: "",
         password: "",
@@ -60,7 +60,7 @@ export default {
         return;
       }
       await this.$store.dispatch("register", this.credentials);
-      await sessionStorage.setItem("meetup", JSON.stringify(this.credentials));
+      await sessionStorage.setItem("users", JSON.stringify(this.credentials));
     },
     validEmail: function(email) {
       var regEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -92,6 +92,7 @@ export default {
     margin: 0 1rem;
     width: 115px;
     height: 22px;
+    color: black;
     background: #ffbd21;
     border-radius: 8px 8px 0px 0px;
   }

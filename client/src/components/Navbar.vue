@@ -11,23 +11,28 @@
       <router-link class="home-btn" to="/">
         Home
       </router-link>
-      <Login />
       <div class="hamburger" @click="$store.commit('TOGGLE_SIDE_MENU')">
         <i class="fas fa-bars"></i>
+      </div>
+      <div v-if="auth.loggedIn" class="logout">
+        <a href="#" type="submit" class="btn large" @click="logout">Logout</a>
       </div>
     </nav>
   </div>
 </template>
 
 <script>
-import Login from "./Login.vue";
 export default {
-  components: {
-    Login,
-  },
   methods: {
     toggleCartModal() {
       this.$store.commit("TOGGLE_SIDE_MENU");
+    },
+    logout() {
+      this.$store.dispatch("logout");
+      this.showModal = false;
+    },
+    close() {
+      this.showModal = false;
     },
   },
   computed: {
@@ -47,7 +52,7 @@ export default {
     display: flex;
     padding: 0 2rem;
     position: relative;
-    background: #fff;
+    background: #15085f;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid rgb(107, 104, 104);
@@ -57,7 +62,7 @@ export default {
       display: none;
 
       a {
-        color: #000;
+        color: #fff;
         text-decoration: none;
 
         &:hover {
@@ -69,7 +74,7 @@ export default {
     }
 
     span {
-      color: rgb(3, 3, 3);
+      color: #fff;
       cursor: pointer;
       font-size: 2rem;
       position: relative;

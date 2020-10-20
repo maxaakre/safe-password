@@ -2,15 +2,22 @@
   <ul class="side-menu" :class="{ toggle: isOpen }">
     <li>
       <router-link to="/" @click.native="$store.commit('TOGGLE_SIDE_MENU')"
-        >Events</router-link
+        >Home</router-link
       >
     </li>
     <li>
       <router-link
         class="link"
-        to="contact"
+        to="login"
         @click.native="$store.commit('TOGGLE_SIDE_MENU')"
-        >Contact</router-link
+        >Login</router-link
+      >
+    </li>
+    <li>
+      <router-link
+        to="createPass"
+        @click.native="$store.commit('TOGGLE_SIDE_MENU')"
+        >New Password</router-link
       >
     </li>
     <li>
@@ -33,20 +40,22 @@ export default {
 .side-menu {
   display: none;
   text-align: right;
-  background: grey;
+  background: #ffbd21;
+  //   color: #15085f;
   width: 100%;
 
   a {
     display: block;
+    color: #ffffff;
     padding: 1rem;
     width: 100%;
-    color: whitesmoke;
+
     margin: auto;
   }
   li {
     list-style: none;
     width: 100%;
-    color: whitesmoke;
+    color: #15085f;
   }
 
   &.toggle {

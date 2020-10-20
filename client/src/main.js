@@ -6,6 +6,12 @@ import store from "./store";
 Vue.config.productionTip = false;
 
 new Vue({
+  created() {
+    const loggedIn = sessionStorage.getItem("users");
+    if (loggedIn) {
+      store.commit("auth", JSON.parse(loggedIn));
+    }
+  },
   router,
   store,
 

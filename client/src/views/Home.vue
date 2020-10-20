@@ -18,48 +18,20 @@ export default {
   width: 100%;
   height: 100vh;
   background: #15085f;
-  .logga {
-    position: absolute;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  img {
+    margin: 15rem auto 0 auto;
+    display: flex;
     width: 76px;
     height: 76px;
-    left: 149px;
-    top: 302px;
+    background: #ffffff;
   }
   h1 {
-    /* LCKD */
-
-    position: absolute;
-    width: 167px;
-    height: 35px;
-    left: 125px;
-    top: 403px;
-
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 44px;
-    line-height: 60px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    letter-spacing: 0.15em;
-
-    color: #ffffff;
+    color: white;
   }
   h2 {
-    /* KEEPING YOUR PASSWORDS SAFE */
-
-    position: absolute;
-    width: 215px;
-    height: 69px;
-    left: 80px;
-    top: 452px;
-
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 150%;
     /* or 30px */
     display: flex;
     align-items: center;

@@ -19,7 +19,8 @@ router.post("/auth", async (req, res) => {
   const token = await User.login(req.body);
   if (token) {
     res.status(201).json(token);
-    console.log(token);
+    // console.log(token);
+    console('Your are in!')
   } else {
     res.status(401).json({ error: "Not authorized" });
   }

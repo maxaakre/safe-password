@@ -10,12 +10,18 @@ const routes = [
     name: "Home",
     component: Home,
   },
-  // {
-  //   path: "/password/:id",
-  //   name: "password",
-  //   props: true,
-  //   component: () => import("@/views/Password.vue"),
-  // },
+  {
+    path: "/password/:id",
+    name: "password",
+    props: true,
+    component: () => import("@/views/Password.vue"),
+  },
+  {
+    path: "/newpassword",
+    name: "newpassword",
+    props: true,
+    component: () => import("@/views/Newpassword.vue"),
+  },
   {
     path: "/signup",
     name: "Signup",

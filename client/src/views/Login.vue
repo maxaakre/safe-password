@@ -21,9 +21,7 @@
           autocomplete="off"
         />
       </div>
-      <button type="submit" class="btn large">
-        Login
-      </button>
+      <button type="submit" class="btn large">LET ME IN</button>
     </form>
     <div v-if="auth.loggedIn" class="passwords"></div>
   </div>
@@ -63,7 +61,7 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss" scoped >
 .wrapper {
   background: #15085f;
   height: 100vh;
@@ -96,7 +94,8 @@ export default {
   }
   input {
     width: 300px;
-    padding: 1rem;
+    padding: 0.6rem;
+    font-size: 24px;
     margin: 0 1rem;
     border: 2px solid #ffbd21;
     background: #15085f;
@@ -111,13 +110,10 @@ export default {
     color: #000;
     background: #ffffff;
     text-decoration: none;
-    position: absolute;
     width: 311px;
     height: 62px;
-    left: 32px;
-    top: 718px;
-
     border-radius: 8px;
+    margin: 1rem auto;
   }
   .login {
     font-size: 24px;

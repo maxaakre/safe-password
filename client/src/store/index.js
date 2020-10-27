@@ -3,8 +3,6 @@ import Vuex from "vuex";
 import axios from "axios";
 import * as API from "@/api";
 
-// const API = "api/meets";
-
 Vue.use(Vuex);
 
 export default new Vuex.Store({

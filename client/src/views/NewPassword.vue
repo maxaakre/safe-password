@@ -1,27 +1,37 @@
 <template>
   <div class="wrapper">
+    <h2>NEW SECURE CREDENTIALS</h2>
     <form @submit.prevent="createPassword">
-      <label for="username">Username</label>
-      <input
-        type="text"
-        class="username"
-        placeholder=""
-        name="username"
-        v-model="credentials.username"
-      />
+      <div class="box">
+        <label for="site">Site</label>
+        <input
+          type="text"
+          class="site"
+          name="site"
+          v-model="credentials.site"
+        />
+      </div>
+      <div class="box">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="username"
+          name="username"
+          v-model="credentials.username"
+        />
+      </div>
       <div class="box">
         <label for="password">Password</label>
         <input
           :type="type"
           class="password"
-          placeholder="******"
           name="password"
           v-model="credentials.password"
         />
         <span @click="showPassword"> {{ btnText }}</span>
       </div>
 
-      <button type="submit">Create</button>
+      <button class="btn" type="submit">NEW LCkD</button>
     </form>
   </div>
 </template>
@@ -32,6 +42,7 @@ export default {
     return {
       credentials: {
         id: Date.now(),
+        site: "",
         username: "",
         password: "",
       },
@@ -58,50 +69,65 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
+  background: #15085f;
   height: 100vh;
-
-  form {
+  padding: 6rem 0;
+  .form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    color: #000;
+    width: 370px;
+    height: 100vh;
+    padding: 1.2rem 0;
+  }
+  h2 {
+    color: white;
+    margin: 2rem;
+  }
+  .error-message {
+    color: #ffbd21;
+  }
+  .box {
+    margin: 1rem;
+    text-align: left;
   }
   label {
-    padding: 0.3rem;
+    padding: 0 1rem;
+    margin: 0 1rem;
+    width: 115px;
+    height: 22px;
+    color: black;
+    background: #ffbd21;
+    border-radius: 8px 8px 0px 0px;
   }
   input {
     width: 300px;
-    height: 40px;
-    font-size: 20px;
+    padding: 0.6rem;
+    font-size: 24px;
+    margin: 0 1rem;
+    border: 2px solid #ffbd21;
+    background: #15085f;
+    color: #ffbd21;
+  }
+  .btn {
     display: flex;
-    &::placeholder {
-      color: #000;
-    }
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 5px;
+    color: #000;
+    background: #ffffff;
+    text-decoration: none;
+    width: 311px;
+    height: 62px;
+    border-radius: 8px;
+    margin: 1rem auto;
   }
-  .content {
-    width: 300px;
-    height: 300px;
-    font-size: 18px;
-    padding: 5px;
-    &::placeholder {
-      color: #000;
-    }
+  .login {
+    font-size: 24px;
+    color: #ffbd21;
   }
-  button {
-    padding: 1rem;
-    margin: 1rem;
-    background: none;
-  }
-}
-@media screen and (min-width: 768px) {
-  .wrapper {
-    input {
-      font-size: 12px;
-      height: 30px;
-    }
-    .content {
-      height: 200px;
-    }
+  span {
+    margin-left: 1rem;
   }
 }
 </style>

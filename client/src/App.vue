@@ -3,6 +3,7 @@
     <div id="nav">
       <Navbar />
       <AppSideMenu />
+      <Cookiecontent v-show="show"/>
     </div>
     <router-view />
   </div>
@@ -10,8 +11,22 @@
 <script>
 import Navbar from "@/components/Navbar.vue";
 import AppSideMenu from "@/components/AppSideMenu.vue";
+import Cookiecontent from '@/components/Cookiecontent.vue';
 export default {
-  components: { AppSideMenu, Navbar },
+
+  components: { AppSideMenu, Navbar,Cookiecontent },
+  data() {
+    return {
+      show: false
+    }
+  },
+ mounted(){
+ console.log(this.$cookie.get('cookie-consent'));
+ const cookie = JSON.parse(this.$cookie.get('cookie-consent'))
+ if (!cookie) {
+   this.show=true
+ }
+ }
 };
 </script>
 <style lang="scss">

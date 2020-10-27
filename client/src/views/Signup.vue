@@ -62,7 +62,7 @@ export default {
       await this.$store.dispatch("register", this.credentials);
       await sessionStorage.setItem("users", JSON.stringify(this.credentials));
     },
-    validEmail: function(email) {
+    validEmail: function (email) {
       var regEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return regEx.test(email);
     },
@@ -98,7 +98,8 @@ export default {
   }
   input {
     width: 300px;
-    padding: 1rem;
+    padding: 0.6rem;
+    font-size: 24px;
     margin: 0 1rem;
     border: 2px solid #ffbd21;
     background: #15085f;
@@ -113,13 +114,10 @@ export default {
     color: #000;
     background: #ffffff;
     text-decoration: none;
-    position: absolute;
     width: 311px;
     height: 62px;
-    left: 32px;
-    top: 718px;
-
     border-radius: 8px;
+    margin: 1rem auto;
   }
   .login {
     font-size: 24px;

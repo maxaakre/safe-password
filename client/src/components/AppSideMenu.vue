@@ -7,6 +7,15 @@
     </li>
     <li>
       <router-link
+        v-if="auth.loggedIn"
+        class="link"
+        to="/password/:id"
+        @click.native="$store.commit('TOGGLE_SIDE_MENU')"
+        >Your passwords</router-link
+      >
+    </li>
+    <li>
+      <router-link
         class="link"
         to="login"
         @click.native="$store.commit('TOGGLE_SIDE_MENU')"
@@ -15,13 +24,14 @@
     </li>
     <li>
       <router-link
-        to="createPass"
+        v-if="auth.loggedIn"
+        to="newpassword"
         @click.native="$store.commit('TOGGLE_SIDE_MENU')"
         >New Password</router-link
       >
     </li>
     <li>
-      <router-link to="Signup" @click.native="$store.commit('TOGGLE_SIDE_MENU')"
+      <router-link to="signup" @click.native="$store.commit('TOGGLE_SIDE_MENU')"
         >Signup</router-link
       >
     </li>
@@ -32,7 +42,12 @@
 import { mapState } from "vuex";
 export default {
   name: "Appsidemenu",
-  computed: { ...mapState(["isOpen"]) },
+  computed: {
+    ...mapState(["isOpen"]),
+    auth() {
+      return this.$store.state.auth;
+    },
+  },
 };
 </script>
 

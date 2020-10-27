@@ -3,6 +3,13 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+
+const VueCookie = require('vue-cookie');
+const settingCookie = require('./settingCookie');
+// Tell Vue to use the plugin
+Vue.use(VueCookie);
+
+
 Vue.config.productionTip = false;
 
 new Vue({
@@ -12,6 +19,11 @@ new Vue({
       store.commit("auth", JSON.parse(loggedIn));
     }
   },
+  mouted(){
+
+    settingCookie();
+  },
+  
   router,
   store,
 

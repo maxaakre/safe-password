@@ -17,11 +17,17 @@ export const register = async (newUser) => {
 };
 
 export const login = async (credentials) => {
-  console.log("POST api/auth", " - Payload: ", credentials);
+  console.log("POST /auth", " - Payload: ", credentials);
   const response = await api.post("/auth", credentials);
   // console.log("Response: ", response);
   return response.data;
 };
+export const remove = async userToBeRemoved => {
+  console.log(`DELETE /${userToBeRemoved._id}` )
+  const response = await api.delete(`/${userToBeRemoved._id}`)
+  console.log("Response", response);
+  return response
+}
 export const fetchPassword = async () => {
   console.log("GET /password");
   const response = await api.get("/password");

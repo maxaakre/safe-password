@@ -1,5 +1,8 @@
 <template>
   <div class="wrapper">
+    <div v-if="auth.loggedIn" class="delete-user">
+      <button @click="remove"> REMOVE USER</button>
+    </div>
     <form v-if="!auth.loggedIn" @submit.prevent="login">
       <img src="@/assets/logga.png" alt="login" />
       <h1>LCKD</h1>
@@ -46,6 +49,9 @@ export default {
     },
   },
   methods: {
+    remove(){
+      this.$store.dispatch('userRemove', this.credentials)
+    },
     login() {
       this.error = "";
       if (this.credentials.email == "" || this.credentials.password == "") {

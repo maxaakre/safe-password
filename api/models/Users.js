@@ -5,6 +5,8 @@ const users = new Datastore({
 });
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const {v4 : uuidv4} = require('uuid')
+const userId = uuidv4()
 require("dotenv").config();
 
 module.exports = {
@@ -21,6 +23,7 @@ module.exports = {
           password: passwordHash,
           role: "user",
           name: body.name,
+         _id:userId
         };
         console.log("user.js register ", newUser);
         return await users.insert(newUser);
@@ -56,4 +59,9 @@ module.exports = {
       }
     }
   },
+
+  async delete(userId){
+    const deleteUser = await users.remove({_id:userId})
+    return deleteUser 
+  }
 };

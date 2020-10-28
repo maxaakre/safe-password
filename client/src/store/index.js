@@ -8,12 +8,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     eventList: [],
-
-    items: [],
+    user:[],
+    items:[],
     isOpen: false,
     showModal: false,
     productItems: [],
     loding: false,
+    
     auth: {
       loggedIn: false,
       error: false,
@@ -22,13 +23,16 @@ export default new Vuex.Store({
         role: "user",
       },
     },
+ 
   },
   mutations: {
+    removeUser(state, userId){
+      state.auth.user = state.auth.user.filter(
+        user => user._id != userId
+      )
+    },
     toggleLogin(state) {
       state.showModal = !state.showModal;
-    },
-    displayMeets(state, items) {
-      state.items = items;
     },
     TOGGLE_SIDE_MENU(state) {
       state.isOpen = !state.isOpen;
@@ -93,6 +97,15 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    userRemove({commit}, userToBeRemoved){
+      console.log(`DELETE /api/products/${userToBeRemoved._id}`)
+      API.remove(`/auth/${userToBeRemoved._id}`)
+      .then(response => {
+        console.log(response)
+        commit('removeUser', userToBeRemoved._id)
+      })
+      .catch(console.log)
+    },
     async getMeetList(context) {
       let resp = await axios.get(API);
       context.commit("displayMeets", resp.data.meet);

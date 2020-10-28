@@ -9,6 +9,8 @@ const passwordRoutes = require("./routes/password");
 
 app.use(express.json());
 app.use(cors());
+const uuid = require('uuid')
+
 
 app.use("/api", userRoutes);
 

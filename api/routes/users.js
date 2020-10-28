@@ -3,6 +3,7 @@ const router = new Router();
 const User = require("../models/Users");
 
 const jwt = require("jsonwebtoken");
+const { json } = require("body-parser");
 
 //REGISTER NEW USER
 router.post("/register", async (req, res) => {
@@ -26,4 +27,13 @@ router.post("/auth", async (req, res) => {
   }
 });
 
+//DELETE USER
+router.post("/:id", async (req,res) =>{
+  if(req.user.role === "user"){
+    const user = User.remove(req.params.id)
+    res.status(201).json(user)
+  }else{
+    res.status(404).send("User not found")
+  }
+})
 module.exports = router;

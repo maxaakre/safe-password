@@ -1,9 +1,10 @@
 const { Router } = require("express");
 const router = new Router();
 const User = require("../models/Users");
-
+const auth = require("./verifytoken");
 const jwt = require("jsonwebtoken");
 const { json } = require("body-parser");
+
 
 //REGISTER NEW USER
 router.post("/register", async (req, res) => {
@@ -21,17 +22,18 @@ router.post("/auth", async (req, res) => {
   if (token) {
     res.status(201).json(token);
     // console.log(token);
-    console('Your are in!')
+    console.log('Your are in!')
   } else {
     res.status(401).json({ error: "Not authorized" });
   }
 });
 
 //DELETE USER
-router.post("/delete", async (req,res) =>{
+router.post("/delete", auth.auth, async (req,res) =>{
+  console.log("detta", req.user)
   if(req.user.role === "user"){
-
-    const user = User.remove(req.body)
+    console.log(req.body)
+    const user = User.delete(req.user.userID)
     res.status(201).json(user)
   }else{
     res.status(404).send("User not found")

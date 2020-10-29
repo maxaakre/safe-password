@@ -107,8 +107,8 @@ export default new Vuex.Store({
   actions: {
    
     userRemove(ctx){
-      console.log("DELETE /api", ctx.state.dataEmail)
-      API.remove(`/api/${ctx.state.dataEmail}`)
+      console.log("DELETE error", ctx.state.dataEmail)
+      API.remove(ctx.state.dataEmail)
       .then(response => {
         console.log(response)
         ctx.commit('removeUser', ctx.dataEmail)

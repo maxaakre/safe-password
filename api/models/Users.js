@@ -6,7 +6,7 @@ const users = new Datastore({
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const {v4 : uuidv4} = require('uuid');
-const { remove } = require("../../client/src/api");
+
 const userId = uuidv4()
 require("dotenv").config();
 
@@ -61,10 +61,11 @@ module.exports = {
     }
   },
 
-  async delete(email){
-    console.log("err", email)
-    const deleteUser = await users.remove({email})
+  async delete(id){
+    console.log("du deletade", id)
+    const deleteUser = await users.remove({_id:id})
     console.log(deleteUser)
-    return deleteUser 
+    chats.persistence.compactDatafile()
+    return deleteUser < 0
   }
 };

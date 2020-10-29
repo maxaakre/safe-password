@@ -24,9 +24,12 @@ export const login = async (credentials) => {
   // console.log("Response: ", response);
   return response.data;
 };
-export const remove = async (userToBeRemoved) => {
+export const remove = async userToBeRemoved => {
   console.log("DELETE /", userToBeRemoved)
-  const response = await api.delete("/auth",userToBeRemoved)
+  const response = await api.post("/delete", JSON.stringify({email:userToBeRemoved}), {headers:{
+    'content-type': 'text/json'
+  } })
+  
   console.log("Response", response);
   return response
 }

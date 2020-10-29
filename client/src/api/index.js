@@ -2,6 +2,8 @@ import axios from "axios";
 
 const api = axios.create({ baseURL: "/api" });
 
+
+
 export const setAuthHeader = function(token) {
   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
@@ -22,9 +24,9 @@ export const login = async (credentials) => {
   // console.log("Response: ", response);
   return response.data;
 };
-export const remove = async userToBeRemoved => {
-  console.log(`DELETE /${userToBeRemoved._id}` )
-  const response = await api.delete(`/${userToBeRemoved._id}`)
+export const remove = async (userToBeRemoved) => {
+  console.log("DELETE /", userToBeRemoved)
+  const response = await api.delete("/auth",userToBeRemoved)
   console.log("Response", response);
   return response
 }

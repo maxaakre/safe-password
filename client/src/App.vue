@@ -3,6 +3,7 @@
     <div id="nav">
       <Navbar />
       <AppSideMenu />
+      <button class="cookie-btn" @click="cookie">Cookie</button>
       <Cookiecontent v-show="show"/>
     </div>
     <router-view />
@@ -20,12 +21,20 @@ export default {
       show: false
     }
   },
+ methods:{
+   cookie(){
+      this.$store.commit('toggleCookie', true)
+    },
+    window(){
+      if(this.$cookie.get('cookie-consent')){
+        this.$store.commit('toggleCookie', false)
+      } else{
+        this.$store.commit('toggleCookie', true)
+      }     
+    },
+ }, 
  mounted(){
- console.log(this.$cookie.get('cookie-consent'));
- const cookie = JSON.parse(this.$cookie.get('cookie-consent'))
- if (!cookie) {
-   this.show=true
- }
+this.window();
  }
 };
 </script>
@@ -47,6 +56,10 @@ export default {
   a {
     font-weight: bold;
     color: #fff;
+  }
+  .cookie-btn{
+    width: 100px;
+  
   }
 }
 </style>

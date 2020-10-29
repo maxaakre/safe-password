@@ -1,9 +1,12 @@
 <template>
   <div class="wrapper">
+    
     <div v-if="auth.loggedIn" class="delete-user">
       <button @click="remove"> REMOVE USER</button>
     </div>
     <form v-if="!auth.loggedIn" @submit.prevent="login">
+      <Cookiecontent />
+      
       <img src="@/assets/logga.png" alt="login" />
       <h1>LCKD</h1>
       <div class="box">
@@ -31,26 +34,35 @@
 </template>
 
 <script>
+import Cookiecontent from '@/components/Cookiecontent.vue'
 export default {
   name: "Login",
+  components:{
+    Cookiecontent,
+  },
   data() {
     return {
       error: "Fill in input fielde's",
       message: "Login",
       credentials: {
+
         email: "",
         password: "",
       },
     };
   },
+
   computed: {
     auth() {
       return this.$store.state.auth;
+      
     },
   },
   methods: {
+    
     remove(){
-      this.$store.dispatch('userRemove', this.credentials)
+      console.log("error",this.credentials.email)
+      this.$store.dispatch('userRemove', this.credentials.email)
     },
     login() {
       this.error = "";
@@ -59,6 +71,7 @@ export default {
         return;
       }
       this.$store.dispatch("login", this.credentials);
+      this.$store.commit('saveEmail', this.credentials.email)
     },
     logout() {
       this.$store.dispatch("logout");

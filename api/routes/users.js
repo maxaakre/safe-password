@@ -28,9 +28,10 @@ router.post("/auth", async (req, res) => {
 });
 
 //DELETE USER
-router.post("/:id", async (req,res) =>{
+router.post("/delete", async (req,res) =>{
   if(req.user.role === "user"){
-    const user = User.remove(req.params.id)
+
+    const user = User.remove(req.body)
     res.status(201).json(user)
   }else{
     res.status(404).send("User not found")

@@ -37,6 +37,7 @@
 </template>
 
 <script>
+// import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
@@ -64,6 +65,7 @@ export default {
   createPassword() {
     this.$store.dispatch("createPassword", this.credentials);
   },
+
 };
 </script>
 

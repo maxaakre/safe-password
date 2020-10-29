@@ -5,7 +5,7 @@ import store from "./store";
 
 
 const VueCookie = require('vue-cookie');
-const settingCookie = require('./settingCookie');
+
 // Tell Vue to use the plugin
 Vue.use(VueCookie);
 
@@ -19,10 +19,7 @@ new Vue({
       store.commit("auth", JSON.parse(loggedIn));
     }
   },
-  mouted(){
-
-    settingCookie();
-  },
+ 
   
   router,
   store,

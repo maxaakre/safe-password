@@ -1,5 +1,5 @@
 <template>
-  <div class="home" @click="$router.push('/signup')">
+  <div class="home" @click="$router.push('/login')">
     <img class="logga" src="@/assets/logga.png" alt="" />
     <h1>LCKD</h1>
     <h2>Welcome to secure password</h2>

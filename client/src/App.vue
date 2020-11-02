@@ -45,7 +45,7 @@ this.window();
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background: #15085f;
+  
 }
 #app {
   font-family: "Open Sans", sans-serif;
@@ -54,6 +54,8 @@ this.window();
   text-align: center;
   color: #fff;
   background:  #15085f;
+  width: 100%;
+  height: 100%;
  
 }
 

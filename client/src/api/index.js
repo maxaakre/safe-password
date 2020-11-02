@@ -40,9 +40,7 @@ export const dipslayAccounts = async () => {
 };
 export const createPassword = async (newPassword) => {
   console.log("POST /password", " - Payload: ", newPassword);
-  const response = await api.post("/password", JSON.stringify({email:newPassword}), {headers:{
-    'content-type': 'text/json'
-  } })
+  const response = await api.post("/password", newPassword);
   // console.log("Response: ", response);
   return response.data.password;
 };

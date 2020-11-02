@@ -10,8 +10,9 @@ export default new Vuex.Store({
     cookieWindow: false,
     items:[],
     isOpen: false,
-    showModal: false,
+    // showModal: false,
     accounts: [],
+    productItems:[],
     dataEmail: [],
     auth: {
       loggedIn: false,
@@ -40,9 +41,9 @@ export default new Vuex.Store({
         user => user._id != userId
       )
     },
-    toggleLogin(state) {
-      state.showModal = !state.showModal;
-    },
+    // toggleLogin(state) {
+    //   state.showModal = !state.showModal;
+    // },
     TOGGLE_SIDE_MENU(state) {
       state.isOpen = !state.isOpen;
     },
@@ -73,19 +74,10 @@ export default new Vuex.Store({
       API.clearAuthHeader();
       sessionStorage.removeItem("users");
     },
-    // setEventData(state, event) {
-    //   const eventExists = state.eventList.some((item) => item.id === event.id);
-    //   if (eventExists) {
-    //     state.eventList = state.eventList.filter((e) => e.id !== event.id);
-    //   } else {
-    //     state.eventList.push(event);
-    //     localStorage.setItem("attended", JSON.stringify(state.eventList));
-    //   }
-    // },
- 
     addPassword(state, product) {
-      state.productItems.push(product);
-      state.productItems = state.items.sort((a, b) => a.title > b.title);
+      state.accounts.push(product);
+      state.accounts = state.accounts.sort((a,b) => a.title > b.title)
+      console.log("Detta hände", product)
     },
     setProducts(state, products) {
       state.productItems = products;
@@ -110,13 +102,7 @@ export default new Vuex.Store({
       })
       .catch(console.log)
     },
-    // readProducts({ commit }) {
-    //   API.fetchPassword()
-    //     .then((products) => {
-    //       commit("setProducts", products);
-    //     })
-    //     .catch(console.log);
-    // },
+  
 
     register({ commit }, newUser) {
       API.register(newUser)
@@ -140,10 +126,11 @@ export default new Vuex.Store({
     logout({ commit }) {
       commit("logout");
     },
-    createPassword(ctx) {
-      API.createPassword(ctx.state.dataEmail)
+    createPassword({ commit }, newPassword) {
+      API.createPassword(newPassword)
         .then((product) => {
-          ctx.commit("addPassword", product);
+          commit("addPassword", product);
+          console.log("det här är tidigare",product)
           alert("Your password is added go to home");
         })
         .catch(console.log);

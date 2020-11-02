@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       credentials: {
-        id: Date.now(),
+        
         site: "",
         username: "",
         password: this.generateSecurePassword(),
@@ -43,6 +43,7 @@ export default {
   methods: {
        addAccount() {
             this.$store.dispatch("createPassword", this.credentials);
+            this.$router.push('/createdpasswords')
         },
         generateSecurePassword() {
             return new Array(15).fill().map(() => String.fromCharCode(Math.random() * 86 + 40)).join('');
@@ -56,66 +57,79 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-  background: #15085f;
-  height: 100vh;
-  padding: 6rem 0;
-  .form {
+.add-account {
     display: flex;
     flex-direction: column;
-    width: 370px;
-    height: 100vh;
-    padding: 1.2rem 0;
-  }
-  h2 {
-    color: white;
-    margin: 2rem;
-  }
-  .error-message {
-    color: #ffbd21;
-  }
-  .box {
-    margin: 1rem;
-    text-align: left;
-  }
-  label {
-    padding: 0 1rem;
-    margin: 0 1rem;
-    width: 115px;
-    height: 22px;
-    color: black;
-    background: #ffbd21;
-    border-radius: 8px 8px 0px 0px;
-  }
-  input {
-    width: 300px;
-    padding: 0.6rem;
-    font-size: 24px;
-    margin: 0 1rem;
-    border: 2px solid #ffbd21;
-    background: #15085f;
-    color: #ffbd21;
-  }
-  .btn {
-    display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
-    border-radius: 5px;
-    color: #000;
-    background: #ffffff;
-    text-decoration: none;
-    width: 311px;
-    height: 62px;
-    border-radius: 8px;
-    margin: 1rem auto;
-  }
-  .login {
-    font-size: 24px;
-    color: #ffbd21;
-  }
-  span {
-    margin-left: 1rem;
-  }
+    height: 100%;
 }
+
+.header {
+    // display: flex;
+    // align-self: flex-start;
+    align-items: center;
+    // margin-left: 1.8rem;
+    // margin-bottom: 1rem;
+    margin-top: 1.1rem;
+}
+
+.header h4 {
+    margin-left: 0.5rem;
+}
+
+.title {
+    margin-top: auto;
+    text-transform: uppercase;
+    font-size: 1.1em;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.first {
+    margin-top: auto;
+}
+
+.label {
+    color: #000000;
+    align-self: flex-start;
+    background-color: #ffbd21;
+    text-transform: uppercase;
+    padding: 0.2rem;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.9em;
+    line-height: 19px;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.input-field {
+    min-width: 250px;
+    border: 1px solid #ffbd21;
+    border-radius: 0px 4px 4px 4px;
+    background-color: transparent;
+    padding: 1rem;
+    color: #ffbd21;
+    margin-bottom: 2rem;
+    font-size: 1.3em;
+}
+
+.button {
+    min-width: 250px;
+    padding: 0.8rem;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    font-family: Open Sans;
+    font-weight: bold;
+    font-size: 1.3em;
+    margin: auto;
+    // margin-top: auto;
+    // margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
 </style>

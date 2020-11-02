@@ -1,20 +1,20 @@
 <template>
-  <div class="add-account">
-    <div class="header">
-      <img src="@/assets/logga.png" alt="login" />
-      <h4>LCKD</h4>
-    </div>
-    <div class="input-wrapper" v-if="accounts">
-      <h4 class="label"> Stored passwords</h4>
-      <div class="display-accounts">
-        <input v-for="(account, index) in accounts" :key=index
-        type="text" class="input-field" v-model="account.site" @click="showAccount(account.password)" />
-      </div>
-    </div>
-      <h2 class="display-accounts" v-else>No accounts added</h2>
+   <section class="accounts">
+        <header class="header">
+            <img alt="Vue logo" src="../assets/logga.png" class="logo" />
+            <h4>LCKD</h4>
+        </header>
+        <section class="input-wrapper" v-if="accounts">
+            <h4 class="label">Stored passwords</h4>
+            <article class="display-accounts">
+                <input v-for="(account, index) in accounts" :key=index
+                    type="text" class="input-field" v-model="account.site" @click="showAccount(account.password)" />
+            </article>
+        </section>
+        <h2 class="display-accounts" v-else>No accounts added</h2>
         <input type="text" class="input-field" v-model="selectedAccount" />
         <button class="button" @click="addAccount">New LCKD</button>
-  </div>
+    </section>
 </template>
 
 <script>
@@ -28,7 +28,10 @@ data() {
 computed:{
         accounts() {
             return this.$store.state.accounts;
-        }
+        },
+         auth(){
+      return this.$store.state.auth.user;
+    }
 },
 methods: {
         addAccount() {
@@ -51,16 +54,18 @@ mounted() {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 100vh;
+    
 }
 
 .header {
+  margin: 1rem;
     // display: flex;
     // align-self: flex-start;
     // align-items: center;
     // margin-left: 1.8rem;
     // margin-bottom: 1rem;
-    margin-top: 1.1rem;
+    // margin-top: 1.1rem;
 }
 
 .header h4 {
@@ -83,17 +88,23 @@ mounted() {
 }
 
 .label {
-    color: #000000;
-    align-self: flex-start;
-    background-color: #ffbd21;
-    text-transform: uppercase;
-    padding: 0.2rem;
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 0.9em;
-    line-height: 19px;
+    padding: 0 2rem;
+    margin: 0 4rem;
+    height: 22px;
+    color: black;
+    background: #ffbd21;
     border-radius: 8px 8px 0px 0px;
+    // color: #000000;
+    align-self: flex-start;
+    // background-color: #ffbd21;
+    // text-transform: uppercase;
+    // padding: 0.2rem;
+    // font-family: Open Sans;
+    // font-style: normal;
+    // font-weight: bold;
+    // font-size: 0.9em;
+    // line-height: 19px;
+    // border-radius: 8px 8px 0px 0px;
 }
 
 .input-field {
@@ -117,5 +128,6 @@ mounted() {
     font-size: 1.3em;
     margin-top: auto;
     margin-bottom: 1.5rem;
+    padding: 1rem;
     text-transform: uppercase;
 }</style>

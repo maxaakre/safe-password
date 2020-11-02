@@ -60,7 +60,7 @@
   padding: 0;
   background: rgb(37, 36, 36);
   
-  section{
+  section{  
     display: flex;
     flex-direction: column;
     justify-content: center;

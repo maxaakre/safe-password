@@ -10,10 +10,10 @@ router.get("/password", auth.auth, async (req, res) => {
 });
 
 //CREATE NEW PASSWORD
-router.post("/password", async (req, res) => {
+router.post("/password", auth.auth, async (req, res) => {
   if (req.body) {
     console.log(req.body);
-    const password = await Newpassword.create(req.body);
+    const password = await Newpassword.create(req.body,req.user.email);
     res.status(201).json(password);
   } else {
     res.status(401).json({ message: "Not aloud to put in PASSWORDS!" });

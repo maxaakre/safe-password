@@ -29,11 +29,10 @@ export const remove = async userToBeRemoved => {
   const response = await api.post("/delete", JSON.stringify({email:userToBeRemoved}), {headers:{
     'content-type': 'text/json'
   } })
-  
   console.log("Response", response);
   return response
 }
-export const fetchPassword = async () => {
+export const dipslayAccounts = async () => {
   console.log("GET /password");
   const response = await api.get("/password");
   // console.log("Response: ", response);
@@ -41,7 +40,9 @@ export const fetchPassword = async () => {
 };
 export const createPassword = async (newPassword) => {
   console.log("POST /password", " - Payload: ", newPassword);
-  const response = await api.post("/password", newPassword);
+  const response = await api.post("/password", JSON.stringify({email:newPassword}), {headers:{
+    'content-type': 'text/json'
+  } })
   // console.log("Response: ", response);
   return response.data.password;
 };

@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     
-    <div v-if="auth.loggedIn" class="delete-user">
-      <button @click="remove"> REMOVE USER</button>
+    <div v-if="auth.loggedIn">
+      <button class="delete-user" @click="remove"> REMOVE USER</button>
     </div>
     <form v-if="!auth.loggedIn" @submit.prevent="login">
       <Cookiecontent />
@@ -82,7 +82,7 @@ export default {
 </script>
 <style lang="scss" scoped >
 .wrapper {
-  background: #15085f;
+ 
   height: 100vh;
   padding: 6rem 0;
   .form {

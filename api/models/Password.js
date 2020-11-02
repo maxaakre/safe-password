@@ -3,10 +3,13 @@ const password = new Datastore({
   filename: "./db/password.db",
   autoload: true,
 });
+const {v4 : uuidv4} = require('uuid');
+
+const userId = uuidv4()
 
 module.exports = {
   //GET ALL PASSWORDS
-  async all() {
+  async getAll() {
     return await password.find({});
   },
   //GET ONE PASSWORD
@@ -22,6 +25,7 @@ module.exports = {
         username: body.username,
         password: passwordHash,
         role: "user",
+        _id:userId
       };
       console.log("Created password", newPassword);
       return await password.insert(newPassword);

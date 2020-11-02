@@ -44,7 +44,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
+.wrapper {  
+ color: white;
   .nav-bar {
     z-index: 3;
     width: 100%;
@@ -52,8 +53,8 @@ export default {
     display: flex;
     padding: 0 2rem;
     position: relative;
-    background: #15085f;
     align-items: center;
+    
     justify-content: space-between;
     border-bottom: 1px solid rgb(107, 104, 104);
 
@@ -62,7 +63,7 @@ export default {
       display: none;
 
       a {
-        color: #fff;
+        color: gren;
         text-decoration: none;
 
         &:hover {
@@ -75,6 +76,7 @@ export default {
 
     span {
       color: #fff;
+     
       cursor: pointer;
       font-size: 2rem;
       position: relative;

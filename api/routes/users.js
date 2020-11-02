@@ -9,7 +9,6 @@ const { json } = require("body-parser");
 //REGISTER NEW USER
 router.post("/register", async (req, res) => {
   const user = await User.register(req.body);
-
   if (user) {
     res.status(201).json(user);
   } else {
@@ -21,7 +20,6 @@ router.post("/auth", async (req, res) => {
   const token = await User.login(req.body);
   if (token) {
     res.status(201).json(token);
-    // console.log(token);
     console.log('Your are in!')
   } else {
     res.status(401).json({ error: "Not authorized" });
@@ -30,9 +28,7 @@ router.post("/auth", async (req, res) => {
 
 //DELETE USER
 router.post("/delete", auth.auth, async (req,res) =>{
-  console.log("detta", req.user)
   if(req.user.role === "user"){
-    console.log(req.body)
     const user = User.delete(req.user.userID)
     res.status(201).json(user)
   }else{

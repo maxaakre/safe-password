@@ -7,13 +7,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    eventList: [],
     cookieWindow: false,
     items:[],
     isOpen: false,
     showModal: false,
-    productItems: [],
-    loding: false,
+    accounts: [],
     dataEmail: [],
     auth: {
       loggedIn: false,
@@ -26,6 +24,9 @@ export default new Vuex.Store({
  
   },
   mutations: {
+    newPassword(state,password){
+      state.accounts= password
+    },
     toggleCookie(state, toggle){
       state.cookieWindow = toggle
     },
@@ -81,28 +82,15 @@ export default new Vuex.Store({
     //     localStorage.setItem("attended", JSON.stringify(state.eventList));
     //   }
     // },
-    // setEventArray(state, events) {
-    //   state.eventList = events;
-    // },
-    // setEventReview(state, eventReview) {
-    //   state.eventReviews.push(eventReview);
-    //   localStorage.setItem("reviews", JSON.stringify(state.eventReviews));
-    // },
-    // setReviewsArray(state, reviews) {
-    //   state.eventReviews = reviews;
-    // },
+ 
     addPassword(state, product) {
       state.productItems.push(product);
       state.productItems = state.items.sort((a, b) => a.title > b.title);
     },
-    // setProducts(state, products) {
-    //   state.productItems = products;
-    // },
-    // removeProduct(state, productId) {
-    //   state.productItems = state.productItems.filter(
-    //     (product) => product._id != productId
-    //   );
-    // },
+    setProducts(state, products) {
+      state.productItems = products;
+    },
+  
   },
   actions: {
    
@@ -115,11 +103,13 @@ export default new Vuex.Store({
       })
       .catch(console.log)
     },
-    // async getMeetList(context) {
-    //   let resp = await axios.get(API);
-    //   context.commit("displayMeets", resp.data.meet);
-    //   console.log(resp);
-    // },
+    getAccounts({commit, newPassword}) {
+      API.dipslayAccounts(newPassword)
+      .then((password)=>{
+        commit('newPassword', password)
+      })
+      .catch(console.log)
+    },
     // readProducts({ commit }) {
     //   API.fetchPassword()
     //     .then((products) => {
@@ -150,34 +140,14 @@ export default new Vuex.Store({
     logout({ commit }) {
       commit("logout");
     },
-    createPassword({ commit }, newProduct) {
-      API.createPassword(newProduct)
+    createPassword(ctx) {
+      API.createPassword(ctx.state.dataEmail)
         .then((product) => {
-          commit("addPassword", product);
+          ctx.commit("addPassword", product);
           alert("Your password is added go to home");
         })
         .catch(console.log);
     },
   },
-  getters: {
-    showCurrentReview: (state) => (id) => {
-      return state.eventReviews.filter((review) => review.id == id);
-    },
-     randomizePassword() {
-      const characters =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
-        "abcdefghijklmnopqrstuvwxyz0123456789@#$!%()";
-      let password = "";
-    
-      for (let i = 0; i < 8; i++) {
-        let char = Math.floor(Math.random() * characters.length);
-        console.log("Slumpat tal: ", char);
-        console.log("Char: ", characters.charAt(char));
-        password += characters.charAt(char);
-        console.log("Lösenord: ", password);
-      }
-    
-      return password;
-    }
-  },
+ 
 });

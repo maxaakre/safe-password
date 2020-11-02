@@ -9,7 +9,7 @@
       <router-link
         v-if="auth.loggedIn"
         class="link"
-        to="/password/:id"
+        to="/createdpasswords"
         @click.native="$store.commit('TOGGLE_SIDE_MENU')"
         >Your passwords</router-link
       >
@@ -25,7 +25,7 @@
     <li>
       <router-link
         v-if="auth.loggedIn"
-        to="newpassword"
+        to="/newpassword"
         @click.native="$store.commit('TOGGLE_SIDE_MENU')"
         >New Password</router-link
       >
@@ -55,9 +55,10 @@ export default {
 .side-menu {
   display: none;
   text-align: right;
-  background: #ffbd21;
-  //   color: #15085f;
+  background:  #15085f;
+  border-bottom:  1px solid #fff;
   width: 100%;
+  
 
   a {
     display: block;
@@ -67,10 +68,12 @@ export default {
 
     margin: auto;
   }
+  
   li {
     list-style: none;
     width: 100%;
     color: #15085f;
+    text-align: center;
   }
 
   &.toggle {

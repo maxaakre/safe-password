@@ -1,43 +1,32 @@
 <template>
-  <div class="wrapper">
-    <h2>NEW SECURE CREDENTIALS</h2>
-    <form @submit.prevent="createPassword">
-      <div class="box">
-        <label for="site">Site</label>
-        <input
-          type="text"
-          class="site"
-          name="site"
-          v-model="credentials.site"
-        />
-      </div>
-      <div class="box">
-        <label for="username">Username</label>
-        <input
-          type="text"
-          class="username"
-          name="username"
-          v-model="credentials.username"
-        />
-      </div>
-      <div class="box">
-        <label for="password">Password</label>
-        <input
-          :type="type"
-          class="password"
-          name="password"
-          v-model="credentials.password"
-        />
-        <span @click="showPassword"> {{ btnText }}</span>
-      </div>
+   <section class="add-account">
+        <header class="header">
+            <img alt="Vue logo" src="../assets/logga.png" class="logo" />
+            <h4>LCKD</h4>
+        </header>
+        <h1 class="title">New secure credentials</h1>
+        <section class="input-wrapper first">
+            <label class="label">www</label>
+            <input type="text" class="input-field" v-model="credentials.site" />
+        </section>
+        <section class="input-wrapper">
+            <label class="label">username</label>
+            <input type="text" class="input-field" v-model="credentials.username" />
+        </section>
+        <section class="input-wrapper">
+            <label class="label">secure password</label>
+            <input type="text" class="input-field" v-model="credentials.password" />
+        </section>
+        <button class="button" @click="addAccount">New LCKD</button>
+    </section>
+    
 
-      <button class="btn" type="submit">NEW LCkD</button>
-    </form>
-  </div>
 </template>
 
 <script>
-// import { mapGetters } from 'vuex';
+
+
+
 export default {
   data() {
     return {
@@ -45,26 +34,23 @@ export default {
         id: Date.now(),
         site: "",
         username: "",
-        password: "",
+        password: this.generateSecurePassword(),
       },
-      type: "password",
-      btnText: "ShowPassword",
+      
+    
     };
   },
   methods: {
-    showPassword() {
-      if (this.type === "password") {
-        this.type = "text";
-        this.btnText = "Hide Password";
-      } else {
-        this.type = "password";
-        this.btnText = "Show Password";
-      }
+       addAccount() {
+            this.$store.dispatch("createPassword", this.credentials);
+        },
+        generateSecurePassword() {
+            return new Array(15).fill().map(() => String.fromCharCode(Math.random() * 86 + 40)).join('');
+        }
     },
-  },
-  createPassword() {
-    this.$store.dispatch("createPassword", this.credentials);
-  },
+
+  
+
 
 };
 </script>

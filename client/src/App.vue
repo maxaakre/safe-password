@@ -3,7 +3,9 @@
     <div id="nav">
       <Navbar />
       <AppSideMenu />
+      <div id="cockie">
       <button class="cookie-btn" @click="cookie">Cookie</button>
+      </div>
       <Cookiecontent v-show="show"/>
     </div>
     <router-view />
@@ -43,6 +45,7 @@ this.window();
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  background: #15085f;
 }
 #app {
   font-family: "Open Sans", sans-serif;
@@ -50,16 +53,24 @@ this.window();
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #fff;
+  background:  #15085f;
+ 
 }
 
 #nav {
-  a {
-    font-weight: bold;
+  .home-btn {
     color: #fff;
   }
-  .cookie-btn{
-    width: 100px;
-  
+  a {
+    font-weight: bold;
+    color: blanchedalmond;
+    
   }
+ 
 }
+.cookie-btn, .delete-user{
+  color: #fff;
+  background: grey;
+}
+
 </style>

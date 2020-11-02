@@ -82,6 +82,7 @@
     }
   button{
       margin:1rem auto;
+      
   }
   
   }    
